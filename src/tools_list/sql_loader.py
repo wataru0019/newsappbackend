@@ -1,4 +1,4 @@
-from tools_list.sqlpractice import read_summay_search
+from src.tools_list.sqlpractice import read_summay_search
 from langchain_core.tools import tool
 
 @tool
@@ -8,7 +8,7 @@ def sql_loader(query: str):
     検索値は検索しやすいよう単語で渡してください。
     """
     articles = read_summay_search(query)
-    print(articles)
+    # print(articles)
     return articles
 
 # sql_loader("日産")

@@ -14,4 +14,4 @@ COPY . .
 # FastAPIアプリケーションのメインファイルとポートを指定
 # main.py がアプリケーションのエントリポイントであると仮定しています。
 # ポートはCloud Runがデフォルトでリッスンする8080番ポートを想定しています。
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]

@@ -14,11 +14,11 @@ from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 load_dotenv()
 
-from llm_list import llm_openai
-from tools_list.web_loader import web_loader
-from tools_list.web_search import tavily_search
-from tools_list.pdf_loader import pdf_loader
-from tools_list.sql_loader import sql_loader
+from src.llm_list import llm_openai
+from src.tools_list.web_loader import web_loader
+from src.tools_list.web_search import tavily_search
+from src.tools_list.pdf_loader import pdf_loader
+from src.tools_list.sql_loader import sql_loader
 
 class MasterState(TypedDict):
     """
