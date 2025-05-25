@@ -54,6 +54,7 @@ async def news():
 #     print(article)
 #     return { "article": article }
 
+# ファイルアップロード用のエンドポイント
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     try:
