@@ -1,0 +1,6 @@
+{
+    "graphs": {
+        "my_graph": "src/agent_test.py:app"
+    },
+    "dependencies": []
+}
