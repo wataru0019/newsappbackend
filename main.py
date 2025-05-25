@@ -41,6 +41,7 @@ async def post_root(payload: Any = Body(...)):
     result = agent_master(payload["text"])
     return { "message": result }
 
+# ニュース情報を取得するためのエンドポイント
 @app.get("/news")
 async def news():
     articles = read_article()
