@@ -11,7 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # アプリケーションコードをコピー
 COPY . .
 
-# FastAPIアプリケーションのメインファイルとポートを指定
-# main.py がアプリケーションのエントリポイントであると仮定しています。
-# ポートはCloud Runがデフォルトでリッスンする8080番ポートを想定しています。
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+# 環境変数PORTが設定されていない場合のデフォルト値を設定
+ENV PORT=8080
+
+# FastAPIアプリケーションを起動
+# Cloud RunのPORT環境変数を使用
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT

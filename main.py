@@ -11,7 +11,7 @@ try :
 except :
     pass
 
-app = FastAPI()
+app = FastAPI(title="NewsApp Backend", version="1.0.0")
 
 origins = [
     "http://localhost",
@@ -27,11 +27,16 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def root(): # 非同期関数として定義
+async def root():
     return { "message": "Hello World" }
 
+@app.get("/health")
+async def health_check():
+    """Cloud Run用のヘルスチェックエンドポイント"""
+    return {"status": "healthy"}
+
 @app.post("/")
-async def post_root(payload: Any = Body(...)): # 非同期関数として定義
+async def post_root(payload: Any = Body(...)):
     print(payload)
     result = agent_master(payload["text"])
     return { "message": result }
@@ -68,3 +73,9 @@ async def upload_file(file: UploadFile = File(...)):
         }
     except Exception as e:
         return {"error": str(e)}
+
+# Cloud Runでの起動確認のため
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
